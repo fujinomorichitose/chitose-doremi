@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>藤森ちとせ 音階ボタン</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: #79a77f;
+
+        font-family:
+            "Yu Gothic",
+            "Hiragino Kaku Gothic ProN",
+            sans-serif;
+
+        color: #493c35;
+    }
+
+
+    .container {
+        width: min(700px, 92vw);
+
+        padding: 30px;
+
+        background: rgba(255,255,255,0.9);
+
+        border-radius: 18px;
+    }
+
+
+    h1 {
+        margin: 0 0 8px;
+
+        text-align: center;
+
+        font-size: 24px;
+    }
+
+
+    .description {
+        margin-bottom: 25px;
+
+        text-align: center;
+
+        font-size: 14px;
+
+        color: #756961;
+    }
+
+
+    .piano {
+        display: grid;
+
+        grid-template-columns:
+            repeat(8, 1fr);
+
+        gap: 8px;
+    }
+
+
+    .note-button {
+
+        min-height: 150px;
+
+        border: none;
+
+        border-radius: 12px;
+
+        background: #fff;
+
+        color: #493c35;
+
+        box-shadow:
+            0 4px 0 #c9beb7;
+
+        cursor: pointer;
+
+        transition:
+            transform 0.08s,
+            box-shadow 0.08s;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+
+        gap: 8px;
+    }
+
+
+    .note-button:hover {
+        background: #f8f1ec;
+    }
+
+
+    .note-button:active {
+
+        transform: translateY(4px);
+
+        box-shadow: none;
+
+    }
+
+
+    .note {
+
+        font-size: 28px;
+
+        font-weight: bold;
+
+    }
+
+
+    .romaji {
+
+        font-size: 12px;
+
+        color: #9a8779;
+
+    }
+
+
+    @media (max-width: 600px) {
+
+        .container {
+            padding: 20px;
+        }
+
+        .piano {
+            grid-template-columns:
+                repeat(4, 1fr);
+        }
+
+        .note-button {
+            min-height: 110px;
+        }
+
+    }
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>
+        藤森ちとせ 音階ボタン
+    </h1>
+
+    <div class="description">
+        ボタンを押すと、ちとせの声が流れます
+    </div>
+
+
+    <div class="piano">
+
+        <button
+            class="note-button"
+            onclick="playVoice('do')">
+
+            <span class="note">
+                ド
+            </span>
+
+            <span class="romaji">
+                DO
+            </span>
+
+        </button>
+
+
+        <button
+            class="note-button"
+            onclick="playVoice('re')">
+
+            <span class="note">
+                レ
+            </span>
+
+            <span class="romaji">
+                RE
+            </span>
+
+        </button>
+
+
+        <button
+            class="note-button"
+            onclick="playVoice('mi')">
+
+            <span class="note">
+                ミ
+            </span>
+
+            <span class="romaji">
+                MI
+            </span>
+
+        </button>
+
+
+        <button
+            class="note-button"
+            onclick="playVoice('fa')">
+
+            <span class="note">
+                ファ
+            </span>
+
+            <span class="romaji">
+                FA
+            </span>
+
+        </button>
+
+
+        <button
+            class="note-button"
+            onclick="playVoice('so')">
+
+            <span class="note">
+                ソ
+            </span>
+
+            <span class="romaji">
+                SO
+            </span>
+
+        </button>
+
+
+        <button
+            class="note-button"
+            onclick="playVoice('la')">
+
+            <span class="note">
+                ラ
+            </span>
+
+            <span class="romaji">
+                LA
+            </span>
+
+        </button>
+
+
+        <button
+            class="note-button"
+            onclick="playVoice('si')">
+
+            <span class="note">
+                シ
+            </span>
+
+            <span class="romaji">
+                SI
+            </span>
+
+        </button>
+
+
+        <button
+            class="note-button"
+            onclick="playVoice('do_high')">
+
+            <span class="note">
+                ド
+            </span>
+
+            <span class="romaji">
+                DO↑
+            </span>
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const voices = {
+
+    do: new Audio("do.mp3"),
+
+    re: new Audio("re.mp3"),
+
+    mi: new Audio("mi.mp3"),
+
+    fa: new Audio("fa.mp3"),
+
+    so: new Audio("so.mp3"),
+
+    la: new Audio("la.mp3"),
+
+    si: new Audio("si.mp3"),
+
+    do_high: new Audio("do_high.mp3")
+
+};
+
+
+function playVoice(note) {
+
+    const audio = voices[note];
+
+    if (!audio) {
+        return;
+    }
+
+
+    /*
+        連打したときにも
+        最初から再生されるようにする
+    */
+
+    audio.currentTime = 0;
+
+    audio.play();
+
+}
+
+</script>
+
+
+</body>
+</html>
